@@ -1,0 +1,14 @@
+language: nix
+
+addons:
+  apt:
+    packages:
+      - wget
+
+before_install:
+  - wget https://github.com/bazelbuild/bazel/releases/download/0.11.1/bazel_0.11.1-linux-x86_64.deb
+  - sudo dpkg -i bazel_0.11.1-linux-x86_64.deb
+
+script:
+  - bazel build //...
+  - bazel run //c-compiles:c-compiles
